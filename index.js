@@ -1,6 +1,5 @@
 const covidData=require(`covid19package`);
 const http=require(`http`);
-const fs=require(`fs`);
 const url=require(`url`);
 http.createServer((req,res)=>{
    let pathObj=url.parse(req.url);
@@ -10,9 +9,9 @@ http.createServer((req,res)=>{
    res.setHeader(`Access-Control-Allow-Origin`,`*`);
    if(pathObj.pathname==`/getCovidInfo`)
    {
-       let cityName=query.split(`=`)[1];
-       console.log(cityName);
-       covidData(`中国`,cityName).then(data=>{
+       let provinceName=query.split(`=`)[1];
+       console.log(provinceName);
+       covidData(`中国`,provinceName).then(data=>{
           console.log(data);
           res.end(JSON.stringify(data))
        });
